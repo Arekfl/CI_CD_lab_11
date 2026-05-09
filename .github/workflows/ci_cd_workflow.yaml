@@ -85,3 +85,15 @@ jobs:
         docker build -t $REPOSITORY:$IMAGE_TAG .
         docker tag $REPOSITORY:$IMAGE_TAG $REGISTRY/$REPOSITORY:$IMAGE_TAG
         docker push $REGISTRY/$REPOSITORY:$IMAGE_TAG
+
+  sam deploy \
+     --template-file sam-template.yaml \
+     --stack-name "$STACK_NAME" \
+     --image-repository "$IMAGE_REPOSITORY" \
+     --parameter-overrides \
+       "ImageUri=$IMAGE_URI" \
+       "LambdaExecutionRoleArn=$LAMBDA_ROLE_ARN" \
+     --capabilities CAPABILITY_IAM \
+     --no-confirm-changeset \
+     --no-fail-on-empty-changeset \
+     --region "$AWS_REGION"
