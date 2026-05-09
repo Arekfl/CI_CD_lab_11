@@ -362,6 +362,11 @@ wheels = [
 name = "lab11-sentiment"
 version = "0.1.0"
 source = { editable = "." }
+dependencies = [
+    { name = "onnx" },
+    { name = "torch" },
+    { name = "transformers" },
+]
 
 [package.dev-dependencies]
 deployment = [
@@ -398,6 +403,11 @@ integration = [
 ]
 
 [package.metadata]
+requires-dist = [
+    { name = "onnx", specifier = ">=1.21.0" },
+    { name = "torch", specifier = ">=2.11.0" },
+    { name = "transformers", specifier = ">=5.8.0" },
+]
 
 [package.metadata.requires-dev]
 deployment = [
